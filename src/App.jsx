@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/NavBar/NavBar';
 import LoginForm from './components/pages/Login';
 import SignUpForm from './components/pages/Register';
+import ProfilePage from './components/pages/Profile';
 // import Navbar from './components/Navbar';
 // import Home from './pages/Home';
 // import Search from './pages/Search';
@@ -16,6 +17,8 @@ function App() {
       <Route exact path='/' element={<LoginForm/>} />
       <Route exact path='/register' element={<SignUpForm/>} />
       <Route exact path='/login' element={<LoginForm/>} />
+      <Route exact path='/profile' element={<ProfilePage/>} />
+
     </Routes>    
    </Router>
   );

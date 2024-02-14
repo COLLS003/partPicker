@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-// import { signup } from "../../utilities/usersService";
+import { signup } from "../../utilities/usersService";
 import "../../index.css";
+// import userRouter from "../../../Routes/userRoutes";
+// import userRouter from "../../../Routes/userRoutes";
 
 
 class SignUpForm extends Component {
@@ -19,12 +21,21 @@ class SignUpForm extends Component {
     });
   };
 
+  handleChange = (evt) => {
+    this.setState({
+      [evt.target.name]: evt.target.value,
+      error: "",
+    });
+  };
+
 //   handleSubmit = async (e) => {
 //     e.preventDefault();
+
 //     try {
-//       const user = await signUp(this.state);
+//       const user = await signup(this.state); // Ensure correct function call
 //       if (user) {
 //         this.props.setUser(user);
+//         console.log("User registered successfully");
 //       } else {
 //         this.setState({ error: "Email already in use" });
 //       }
@@ -35,6 +46,25 @@ class SignUpForm extends Component {
 //     }
 //   };
 
+handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("none - clear error")
+  
+    try {
+      const user = await signup(this.state); // Call signup function with user details
+      console.log("User signed up:", user); // Log user details
+  
+      // You can do further actions here, such as updating state or redirecting the user
+  
+    } catch (error) {
+      // Handle error if signup fails
+      console.error("Error signing up:", error);
+  
+      // Set the error state to display error message to the user
+      this.setState({ error: "Failed to sign up. Please try again." });
+    }
+  };
+  
   render() {
     const { error, email } = this.state;
     const disable = this.state.password !== this.state.confirm;
@@ -44,7 +74,7 @@ class SignUpForm extends Component {
         <div className="min-h-screen flex justify-center items-center bg-gray-100">
           <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-md">
             <h2 className="text-3xl font-semibold mb-4 text-center">Sign Up</h2>
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} >
               <div className="mb-4">
                 <label
                   htmlFor="name"

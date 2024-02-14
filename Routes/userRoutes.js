@@ -1,7 +1,10 @@
 const express = require("express");
-const router = express.Router();
+const userRouter = express.Router();
 
 const usersController = require("../controllers/usersController")
+
+// Route for user registration
+userRouter.post("/", usersController.create);
 
 router.get("/", usersController.index);
 
@@ -16,4 +19,4 @@ router.get('/check-token', usersController.checkToken);
 
 
 
-module.exports = router;
+module.exports = userRouter;

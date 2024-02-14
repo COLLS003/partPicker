@@ -19,21 +19,45 @@ class SignUpForm extends Component {
     });
   };
 
+  // handleSubmit = async (e) => {
+
+    // e.preventDefault();
+    // console.log("none -clear error")
+
+    // try {
+    //   const user = await signUp(this.state);
+    //   if (user) {
+    //     this.props.setUser(user);
+    //   } else {
+    //     this.setState({ error: "Email already in use" });
+    //   }
+    // } catch (e) {
+
+    //   const error = JSON.stringify(e);
+    //   this.setState({ error });
+    //   console.log("none -clear error")
+    //   console.log(error);
+    // }
+  // };
   handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("none - clear error")
+  
     try {
-      const user = await signUp(this.state);
-      if (user) {
-        this.props.setUser(user);
-      } else {
-        this.setState({ error: "Email already in use" });
-      }
-    } catch (e) {
-      const error = JSON.stringify(e);
-      this.setState({ error });
-      console.log(error);
+      const user = await signup(this.state); // Call signup function with user details
+      console.log("User signed up:", user); // Log user details
+  
+      // You can do further actions here, such as updating state or redirecting the user
+  
+    } catch (error) {
+      // Handle error if signup fails
+      console.error("Error signing up:", error);
+  
+      // Set the error state to display error message to the user
+      this.setState({ error: "Failed to sign up. Please try again." });
     }
   };
+  
 
   render() {
     const { error, email } = this.state;

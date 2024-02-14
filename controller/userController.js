@@ -8,15 +8,24 @@ const index = async (req, res) => {
   res.json(users);
 };
 
+// const create = async (req, res) => {
+//   try {
+//     const user = await User.create(req.body);
+//     const token = createJWT(user);
+//     res.json(token);
+//   } catch (err) {
+//     res.status(400).json(err);
+//   }
+// };
 const create = async (req, res) => {
-  try {
-    const user = await User.create(req.body);
-    const token = createJWT(user);
-    res.json(token);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-};
+    try {
+      // Create a new user based on request body
+      const user = await User.create(req.body);
+      res.json(user); // Return the created user data
+    } catch (err) {
+      res.status(400).json(err); // Return error if failed to create user
+    }
+  };
 
 function createJWT(user) {
   return jwt.sign(

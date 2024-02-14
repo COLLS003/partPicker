@@ -10,7 +10,7 @@ export default function LoginForm({ setUser }) {
   const [successMessage, setSuccessMessage] = useState("");
 
   const handleSubmit = async (e) => {
-    co
+    console.log("hello world")
     // e.preventDefault();
 
     // try {
